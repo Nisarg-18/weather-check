@@ -1,0 +1,74 @@
+ {% extends 'base.html' %}
+
+ {% block content %}
+ <!-- heading starts -->
+ <section class="p-5">
+  <div class="container">
+    <h1 class="text-center">
+      Search for any <span class="text-primary">City</span> and get it's
+      <span class="text-primary">Weather Information</span>.
+    </h1>
+  </div>
+</section>
+
+<!-- heading ends -->
+
+<!-- search box starts -->
+<section class="p-3">
+  <div class="container px-5">
+    <div class="px-5">
+      <form action="{% url 'home' %}" method="GET">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          name="city"
+          class="form-control"
+          placeholder="City"
+          aria-label="Recipient's username"
+          aria-describedby="button-addon2"
+        />
+        <button class="btn btn-primary" type="submit" id="button-addon2">
+          Search
+        </button>
+      </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- search box ends -->
+
+<!-- city name starts -->
+<section class="px-5">
+<div class="container px-5">
+    <div class="px-5">
+    <h3 class="text-primary">
+        {{ city }}
+    </h3>
+</div>
+</div>
+</section>
+<!-- city name ends -->
+
+<!-- weather details starts -->
+<h3 class="text-center text-info">{{ message }}</h3>
+
+{% if city|length == 0 %}
+<section class="px-5"></section>
+{% else %}
+<section class="px-5">
+  <div class="container px-5 align-items-center">
+    <div class="col-lg-4 col-md-6 col-sm-12 px-5">
+        <p class="lead">Current Temperature: {{ temp }}&deg;C</p>
+        <p class="lead">Min Temperature: {{ mintemp }}&deg;C</p>
+        <p class="lead">Max Temperature: {{ maxtemp }}&deg;C</p>
+        <p class="lead">Feel Like: {{ feelslike }}&deg;C</p>
+        <p class="lead">Description: {{ desc }}</p>
+        <p class="lead">Pressure: {{ pressure }}hPa</p>
+        <p class="lead">Humidity: {{ humidity }}%</p>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- weather details ends -->
+{% endblock %}
